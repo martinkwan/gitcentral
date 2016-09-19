@@ -19,14 +19,13 @@ function makeConfig(branch) {
   return {
     dotColor: branch.color,
     gitCommands: 'git checkout, git branch, git tag',
-<<<<<<< a5b67aa6f82dd87af0441f5c3785946ef7fd8f1d
   };
 }
 
-const gitGraph = new GitGraph( config );
+const gitGraph = new GitGraph(config);
 gitGraph.author = author;
 
-const master = gitGraph.branch( "master" );
+const master = gitGraph.branch('master');
 const masterConfig = makeConfig(master);
 master.commit({ message: 'First commit!!!' })
   .commit(masterConfig)
