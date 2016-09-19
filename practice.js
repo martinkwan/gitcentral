@@ -10,15 +10,16 @@
 const blank = { message: ' ' };
 const author = 'Arnav & Cady';
 const config = {
-  template: "metro",
-  orientation: "horizontal",
-  mode: "compact",     // special compact mode : hide messages & compact graph
+  template: 'metro',
+  orientation: 'horizontal',
+  mode: 'compact',     // special compact mode : hide messages & compact graph
 };
 
 function makeConfig(branch) {
   return {
     dotColor: branch.color,
     gitCommands: 'git checkout, git branch, git tag',
+<<<<<<< a5b67aa6f82dd87af0441f5c3785946ef7fd8f1d
   };
 }
 
@@ -46,7 +47,7 @@ dev.commit(devConfig)
   .commit(devConfig)
   .commit(devConfig);
 
-const yellow = master.branch("Should be yellow");
+const yellow = master.branch('Should be yellow');
 const yellowConfig = makeConfig(yellow);
 yellow.commit(yellowConfig)
   .commit(yellowConfig)
@@ -61,8 +62,8 @@ dev.commit(devConfig)
 dev.merge(master);
 console.log(dev);
 
-gitGraph.canvas.addEventListener("commit:mouseover", function(event) {
-  this.style.cursor = "pointer";
+gitGraph.canvas.addEventListener('commit:mouseover', function (event) {
+  this.style.cursor = 'pointer';
 });
 
 // const fork = new GitGraph.orphanBranch(config);
