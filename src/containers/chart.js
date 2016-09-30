@@ -20,15 +20,15 @@ class CrossfilterChart extends Component {
 
       // A nest operator, for grouping the flight list.
       let nestByDate = d3.nest()
-          .key(function(d) { return d3.time.day(d.date); });
+          .key(function(d) { return d3.time.day(d.commit.author.date); });
 
       // // A little coercion, since the CSV is untyped.
-      // flights.forEach(function(d, i) {
-      //   d.index = i;
-      //   d.date = parseDate(d.date);
+      JSONCommits.forEach(function(d, i) {
+         d.index = i;
+         d.commit.author.date = new Date(d.commit.author.date);
       //   d.delay = +d.delay;
       //   d.distance = +d.distance;
-      // });
+      });
 
       // Create the crossfilter for the relevant dimensions and groups.
       let commits = crossfilter(JSONCommits);
@@ -90,7 +90,7 @@ class CrossfilterChart extends Component {
 
       // Render the total.
       d3.selectAll("#total")
-          .text(formatNumber(commit.size()));
+          .text(formatNumber(commits.size()));
 
       renderAll();
 
@@ -107,13 +107,13 @@ class CrossfilterChart extends Component {
       }
 
       // Like d3.time.format, but faster.
-      function parseDate(d) {
-        return new Date(2001,
-            d.substring(0, 2) - 1,
-            d.substring(2, 4),
-            d.substring(4, 6),
-            d.substring(6, 8));
-      }
+      // function parseDate(d) {
+      //   return new Date(2001,
+      //       d.substring(0, 2) - 1,
+      //       d.substring(2, 4),
+      //       d.substring(4, 6),
+      //       d.substring(6, 8));
+      // }
 
       window.filter = function(filters) {
         filters.forEach(function(d, i) { charts[i].filter(d); });
@@ -148,7 +148,7 @@ class CrossfilterChart extends Component {
 
           commitEnter.append("div")
               .attr("class", "time")
-              .text(function(d) { return formatTime(d.date); });
+              .text(function(d) { return formatTime(d.commit.author.date); });
 
           // flightEnter.append("div")
           //     .attr("class", "origin")
@@ -190,8 +190,10 @@ class CrossfilterChart extends Component {
         function chart(div) {
           var width = x.range()[1],
               height = y.range()[0];
+          console.log(group.top,"hello cady");
+          // y.domain([0, group.top(1)[0].value]);
+          y.domain([0, 50]);
 
-          y.domain([0, group.top(1)[0].value]);
 
           div.each(function() {
             var div = d3.select(this),
