@@ -1,7 +1,7 @@
 /* eslint-disable */
 /**
  * repo_display.js
- * 
+ *
  * This is the container that displays the repo itself. It needs access to the
  * redux state to receive the commit data returned from the api call. Does not
  * need to dispatch to the redux state.
@@ -39,6 +39,7 @@ class RepoDisplay extends Component {
       this.props.currentRepo.JSONBranches
     );
 
+<<<<<<< 85f82091b1aa0472f2aaa7c3ff96c3b0d6949123
     const {
       SHALookup,
       branchLookup,
