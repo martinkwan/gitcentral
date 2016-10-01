@@ -7,6 +7,7 @@ import d3 from '../reducers/gitD3/d3';
 class CrossfilterChart extends Component {
   makeCrossfilterChart(){
     // console.log("crossfitlerChart loaded")
+
     let JSONCommits = this.props.currentRepo.JSONCommits;
     // let commits = crossfilter(this.props.currentRepo.JSONCommits);
     // var date = commits.dimension(function(d) { return d.commit.date; });

@@ -22,7 +22,6 @@ d3.tip = tooltip;
 
 class RepoDisplay extends Component {
   makeD3Display () {
-    console.log("repo display loaded");
     // remove all svg elements
     d3.select("svg").remove();
     $('#container').remove();
