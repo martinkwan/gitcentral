@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import GithubApiInterface from '../reducers/gitD3/githubBranchFunction';
 import d3 from '../reducers/gitD3/d3';
-// import crossfilter from '../reducers/chartD3/crossfilter';
-// crossfilter();
 
 class CrossfilterChart extends Component {
   makeCrossfilterChart(){
@@ -84,10 +82,10 @@ class CrossfilterChart extends Component {
           .each(function(chart) { chart.on("brush", renderAll).on("brushend", renderAll); });
 
       // Render the initial lists.
-      let list = d3.selectAll(".list")
+      let list = d3.selectAll(".list") //commits list not defined
           .data([commitsList])
           .data([commitsList]);
-
+          console.log('list', list);
       // Render the total.
       d3.selectAll("#total")
           .text(formatNumber(commits.size()));
@@ -126,11 +124,15 @@ class CrossfilterChart extends Component {
       };
 
       function commitsList(div) {
+        console.log('div', div);
         var commitsByDate = nestByDate.entries(date.top(40));
 
         div.each(function() {
+          console.log('*', d3.select(this)); // flight-list.list <-- need to set
           var date = d3.select(this).selectAll(".date")
-              .data(commitsByDate, function(d) { return d.key; });
+              .data(commitsByDate, function(d) {
+                return d.key;
+              });
 
           date.enter().append("div")
               .attr("class", "date")
@@ -149,8 +151,7 @@ class CrossfilterChart extends Component {
           commitEnter.append("div")
               .attr("class", "time")
               .text(function(d) { return formatTime(d.commit.author.date); });
-
-          // flightEnter.append("div")
+          commitEnter.append("div").attr("class", "here");
           //     .attr("class", "origin")
           //     .text(function(d) { return d.origin; });
           //
