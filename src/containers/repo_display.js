@@ -51,7 +51,6 @@ class RepoDisplay extends Component {
       this.props.currentRepo.JSONBranches
     );
 
-<<<<<<< 85f82091b1aa0472f2aaa7c3ff96c3b0d6949123
     const {
       SHALookup,
       branchLookup,
