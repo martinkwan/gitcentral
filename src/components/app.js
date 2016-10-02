@@ -13,8 +13,9 @@ export default class App extends Component {
     return (
       <div>
         <SearchBar />
-        <RepoDisplay />
-        <Chart />
+        {/* <RepoDisplay /> */}
+        {/* <Chart /> */}
+        {this.props.children}
       </div>
     );
   }

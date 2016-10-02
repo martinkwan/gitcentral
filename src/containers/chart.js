@@ -5,6 +5,9 @@ import GithubApiInterface from '../reducers/gitD3/githubBranchFunction';
 import d3 from '../reducers/gitD3/d3';
 
 class CrossfilterChart extends Component {
+  componentDidMount(){
+    this.makeCrossfilterChart();
+  }
   makeCrossfilterChart(){
     // console.log("crossfitlerChart loaded")
 
@@ -375,8 +378,20 @@ class CrossfilterChart extends Component {
 
   render(){
     return(
-      <div>
-        {this.makeCrossfilterChart()}
+      <div id="stats">
+        hey martin
+        <div id="charts">
+          <div id="hour-chart" class="chart">
+            <div class="title">Time of Day</div>
+          </div>
+          <div id="date-chart" class="chart">
+            <div class="title">Date</div>
+          </div>
+        </div>
+        <aside id="totals"><span id="active">-</span> of <span id="total">-</span> commits selected.</aside>
+        <div id="lists">
+          <div id="flight-list" class="list"></div>
+        </div>
       </div>
     );
   }
